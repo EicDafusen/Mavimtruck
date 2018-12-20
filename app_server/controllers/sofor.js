@@ -40,7 +40,7 @@ const soforKaydet = function (req, res) {
             res.redirect('/');
         } else if (cevap.statusCode === 400) {
             console.log(cevap);
-            res.redirect('/isveren/uyeol')
+            res.redirect('hata xd')
         } else {
 
         }
@@ -66,7 +66,7 @@ const soforLogin = function (req, res) {
             console.log(body);
             res.redirect('/');
         } else if (cevap.statusCode === 401) {
-            
+
             res.redirect('/login')
         } else if (cevap.statusCode === 500) {
 

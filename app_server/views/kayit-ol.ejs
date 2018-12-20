@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Forms in Node.js</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#sofor">Şoför</a></li>
+		<li><a data-toggle="tab" href="#isveren">İşveren</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="sofor" class="tab-pane fade in active">
+			<form method="post" action="/sofor/uyeol">
+				<h3>Şoför Bilgileri</h3>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Ad: </label>
+					<input type="text" class="form-control" id="soforAd" name="soforAd" placeholder="Adınız">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Soyad: </label>
+					<input type="text" class="form-control" id="soforSoyad" name="soforSoyad" placeholder="Soyadınız">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">E-Mail: </label>
+					<input type="email" class="form-control" id="soforMail" name="soforMail" placeholder="E-Mail">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">No: </label>
+					<input type="number" class="form-control" id="soforTelefon" name="soforTelefon" placeholder="Telefon Numaranız">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Şifre: </label>
+					<input type="password" class="form-control" id="soforSifre" name="soforSifre" placeholder="Şifre">
+				</div>
+				<h3>Sertifikalar</h3>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">SRC Belgesi: </label><br>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="checkbox" id="src3" name="src3" value="src3">
+						<label class="form-check-label" for="inlineCheckbox1">SRC3</label>
+
+						<input class="form-check-input" type="checkbox" id="src4" name="src4" value="src4">
+						<label class="form-check-label" for="inlineCheckbox2">SRC4</label>
+
+						<input class="form-check-input" type="checkbox" id="src5" name="src5" value="src5">
+						<label class="form-check-label" for="inlineCheckbox2">SRC5</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">K Belgesi: </label><br>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="checkbox" id="k1" name="k1" value="k1">
+						<label class="form-check-label" for="k1">K1</label>
+
+						<input class="form-check-input" type="checkbox" id="k2" name="k2" value="k2">
+						<label class="form-check-label" for="k2">K2</label>
+					</div>
+				</div>
+				<h3>Araç Bilgileri</h3>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Marka: </label>
+					<input type="text" class="form-control" id="aracMarka" name="aracMarka" placeholder="Aracın Markası">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Model: </label>
+					<input type="text" class="form-control" id="aracModel" name="aracModel" placeholder="Aracın Modeli">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">Kasa Tipi: </label>
+					<select class="form-control" id="aracKasaTipi" name="aracKasaTipi">
+						<option value="acikDamperli">Açık(damperli)</option>
+						<option value="acikDampersiz">Açık(dampersiz)</option>
+						<option value="kapali">Kapalı</option>
+						<option value="tanker">Tanker</option>
+						<option value="kapaksiz">Kapaksız</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Maksimum Yük Kapasitesi: </label>
+					<input type="number" class="form-control" id="aracKapasitesi" name="aracKapasitesi" placeholder="Kilogram cinsinden maksimum kapasite">
+				</div>
+
+				<button type="submit" class="btn btn-primary">Kayıt Ol</button>
+			</form>
+		</div>
+		<div id="isveren" class="tab-pane fade">
+			<form method="POST" action="/isveren/uyeol">
+				<!--şirketin adı-->
+				<div class="form-group">
+					<label for="sirketAdi">Şirket Adı: </label>
+					<input type="text" class="form-control" id="sirketAdi" name="sirketAdi" placeholder="Sirket Adını Giriniz.."
+					 required>
+				</div>
+
+				<!--şifre-->
+				<div class="form-group">
+					<label for="sirketSifre">Şifre: </label>
+					<input type="password" class="form-control" id="sirketSifre" name="sirketSifre" placeholder="Şifre">
+				</div>
+
+				<!--Şirketin telefon numarası-->
+				<div class="form-group">
+					<label for="sirketTelefon">No: </label>
+					<input type="text" class="form-control" id="sirketTelefon" name="sirketTelefon" placeholder="Şirketin Telefon Numarasını Giriniz.."
+					 required>
+				</div>
+
+				<!--vergi numarası-->
+				<div class="form-group">
+					<label for="vergiNo">Vergi No: </label>
+					<input type="text" class="form-control" id="vergiNo" name="vergiNo" placeholder="Şirketin Vergi Numaranızı Giriniz.."
+					 required>
+				</div>
+
+				<!--sicil numarası-->
+				<div class="form-group">
+					<label for="sicilNo">Sicil No: </label>
+					<input type="text" class="form-control" id="sicilNo" name="sicilNo" placeholder="Şirketin Sicil Numarasını Giriniz.."
+					 required>
+				</div>
+
+				<!--şirketin e-mail adresi-->
+				<div class="form-group">
+					<label for="sirketMail">E-Mail: </label>
+					<input type="text" class="form-control" id="sirketMail" name="sirketMail" placeholder="Şirketin E-Mail Adresini Giriniz.."
+					 required>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Kayıt Ol</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

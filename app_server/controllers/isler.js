@@ -3,23 +3,25 @@ var request = require('request')
 var api_url = "http://localhost:3000/api"
 
 
-const isleriListele  = function(req,res){
+const isleriListele = function (req, res) {
 
 
     var istekSecenekleri;
     istekSecenekleri = {
-        url : api_url + "/tumisler",
+        url: api_url + "/tumisler",
         method: "GET",
-        json : {},
-        qs   : {}
-        
+        json: {},
+        qs: {}
+
     }
 
-    request(istekSecenekleri , function(hata,cevap,isler){
-       
-        if(!hata && isler.length){
-            
-            res.render("isler-liste-sayfa.ejs",{isler});
+    request(istekSecenekleri, function (hata, cevap, isler) {
+
+        if (!hata && isler.length) {
+
+            res.render("isler-liste-sayfa.ejs", {
+                isler
+            });
         }
 
 
@@ -33,5 +35,5 @@ const isleriListele  = function(req,res){
 
 module.exports = {
     isleriListele
-  
+
 }
