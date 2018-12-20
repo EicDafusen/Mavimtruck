@@ -87,7 +87,7 @@ const postYeniSofor= function(req,res){
        
 }
 
-const soforLogin = function(req,res){
+const soforLogin = function(req,res){l
 
    var email = req.body.email;
    var sifre = req.body.sifre;

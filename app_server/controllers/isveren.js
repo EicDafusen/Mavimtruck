@@ -1,6 +1,7 @@
 var request = require('request')
 
-var api_url = "http://localhost:3000/api"
+//var api_url = "http://localhost:3000/api"
+var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
 
@@ -27,10 +28,10 @@ const isVerenEkle = function (req, res) {
     }
 
     request(istekSecenekleri, (hata, cevap, body) => {
-        if (cevap.statusCode === 201) {
+        if (cevap.statusCode == 201) {
             console.log(cevap);
             res.redirect('/');
-        } else if (cevap.statusCode === 404) {
+        } else if (cevap.statusCode == 404) {
             console.log(cevap);
             res.redirect('/login')
         } else if (cevap.statusCode === 400) {
