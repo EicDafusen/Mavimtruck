@@ -73,15 +73,12 @@ const postYeniSofor= function(req,res){
                 res.status(201).send(sofor);
             //hata durumunda 400 ile hata mesajını yollıyacak
             },(e)=>{
-                 cevapOlustur(res, 400, {
-                 "mesaj": e
-                });
+                 res.status(400).send(e);
        });
           //hata durumunda 400 ile hata mesajını yollıyaca
        },(e)=>{
-            cevapOlustur(res, 400, {
-            "mesaj": e
-         });
+            
+         res.status(400).send(e);
        });
 
 
