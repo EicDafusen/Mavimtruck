@@ -35,14 +35,14 @@ const soforKaydet = function (req, res) {
 
 
     request(istekSecenekleri, (hata, cevap, body) => {
-        if (cevap.statusCode === 201) {
+        if (cevap.statusCode ==201) {
             console.log(cevap);
             res.redirect('/');
-        } else if (cevap.statusCode === 400) {
+        } else if (cevap.statusCode == 400) {
             console.log(cevap);
-            res.redirect('hata xd')
+            res.send('hata xd')
         } else {
-
+            res.send('hata xd'+cevap);
         }
     })
 }
