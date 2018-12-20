@@ -47,8 +47,6 @@ const isVerenEkle = function (req, res) {
 
 const isVerenLogin = function (req, res) {
 
-    var sirket_adi = req.body.sirket_adi;
-    var sifre = req.body.sifre;
 
     var isveren_cred = {
         sirket_adi: req.body.sirket_adi,

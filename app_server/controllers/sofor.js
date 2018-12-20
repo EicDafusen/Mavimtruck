@@ -1,6 +1,6 @@
 var request = require('request')
 
-//y var api_url = "http://localhost:3000/api"
+ //var api_url = "http://localhost:3000/api"
 var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
@@ -55,25 +55,27 @@ const soforLogin = function (req, res) {
         sifre: req.body.sifre
     }
 
+    
+
     var istekSecenekleri = {
-        url: api_url + '/sofor/login',
+        url: api_url +'/sofor/login',
         method: "POST",
         json: sofor_cred
 
     }
-
+    
     request(istekSecenekleri, (hata, cevap, body) => {
+        
         if (cevap.statusCode == 200) {
-            console.log(body);
-            res.redirect('/');
-        } else if (cevap.statusCode == 401) {
 
-            res.redirect('/login')
-        } else if (cevap.statusCode == 500) {
-            res.send(body);
-        } else {
-            res.send(body);
+            res.redirect('/');
+        } else if (cevap.statusCode == 401 ) {
+            res.send('sifre yanlis')
+        } else if (cevap.statusCode == 404){
+            res.send(cevap);
         }
+
+
     });
 
 
