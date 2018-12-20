@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Forms in Node.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#sofor">Şoför</a></li>
+  <li><a data-toggle="tab" href="#isveren">İşveren</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="sofor" class="tab-pane fade in active">
+    <form method="post" action="/sofor/login">
+		<div class="form-group">
+			<label for="e_posta">E-Posta</label>
+			<input  class="form-control" id="email" name="email"  type="textarea" autofocus> </input>
+		</div>
+
+		<div class="form-group">
+			<label for="sifre">Şifre</label>
+			<input class="form-control" id="sifre" name="sifre" type="password" value="" /> 
+		</div>
+
+		<div class="form-actions">
+			<button class="btn btn-success" type="submit">Giriş Yap</button>
+		</div>
+	</form>
+  </div>
+  <div id="isveren" class="tab-pane fade">
+    <form method="post" action="/isveren/login">
+		<div class="form-group">
+			<label for="sirket_adi">Şirket Adı</label>
+			<input  class="form-control" id="sirket_adi" name="sirket_adi"  type="textares" autofocus> </input>
+		</div>
+
+		<div class="form-group">
+			<label for="sifre">Şifre</label>
+			<input class="form-control" id="sifre" name="sifre" type="password" value="" /> 
+		</div>
+
+		<div class="form-actions">
+			<button class="btn btn-success" type="submit">Giriş Yap</button>
+		</div>
+	</form>
+  </div>
+</div>
+</body>
+</html>

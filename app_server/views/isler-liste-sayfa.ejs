@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Liste</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+	<body>
+		<div class="container">
+			 <div class="row">
+
+                <div class="error">
+      
+                    
+
+					<% for(var i=0; i < isler.length; i++) { %>
+						
+						<div class="row list-group " style="background-color: #DCDCDC; padding: 8px;    border-radius: 8px;">
+                           
+							<span>  <h3>İş Başlığı </h3></span>
+							<span>  <h5>Şirket Adı </h5></span>
+							 <span class="btn  pull-right">
+								 <a class="btn btn-primary pull-right"href=""> Başvur </a>
+							 </span>
+							 <p>
+								 <span class="label label-warning"> <%= isler[i].hareket_yeri %></span>
+								 <span class="label label-warning"> <%= isler[i].varis_yeri %></span>
+	
+							 </p>
+							 <span class="label label-success"> <%= isler[i].max_agirlik %></span>
+	 
+						</div>
+						
+					 <% } %>
+
+
+                </div>
+
+			 </div>
+
+
+
+		</div>
+
+
+
+
+	</body>
+</html>

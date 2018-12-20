@@ -1,0 +1,87 @@
+.girisYap{
+	color: #2980b9;
+	border-color: #2980b9;
+	border-width: 3px;
+	border-radius: 0px;
+	padding: 30px;
+	margin-bottom: 15px;
+}
+
+.girisYap:hover{
+	border-color: #2980b9;
+	background-color: #2980b9;
+}
+
+.kayitOl{
+	color: #2a2a2a;
+	border-color: #2a2a2a;
+	border-width: 3px;
+	border-radius: 0px;
+	padding: 30px;
+	margin-bottom: 20px;
+}
+
+.kayitOl:hover{
+	border-color: #2a2a2a;
+	background-color: #2a2a2a;
+}
+
+.facebookGiris{
+	color: #3b5998;
+	border-color: #3b5998;
+	border-width: 3px;
+	border-radius: 0px;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+.facebookGiris:hover{
+	border-color: #3b5998;
+	background-color: #3b5998;
+}
+
+.googleGiris{
+	color: #dd4b39;
+	border-color: #dd4b39;
+	border-width: 3px;
+	border-radius: 0px;
+	padding: 15px;
+}
+
+.googleGiris:hover{
+	border-color: #dd4b39;
+	background-color: #dd4b39;
+}
+
+a{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+}
+
+.linkler {
+	list-style-type:none;
+	padding-left: 0px;
+}
+
+.nav-item-footer {
+	border-bottom: 1px solid #dbdbdb;
+	font-size: 15px;
+}
+
+.nav-link-footer {
+	color: #000000;
+}
+
+a.nav-link-footer {
+    text-decoration:none;
+}
+
+.nav-item-footer:hover {
+	color: #0056b3;
+    text-decoration:none;
+}
