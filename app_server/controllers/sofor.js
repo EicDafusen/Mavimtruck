@@ -62,13 +62,13 @@ const soforLogin = function (req, res) {
     }
 
     request(istekSecenekleri, (hata, cevap, body) => {
-        if (cevap.statusCode === 200) {
+        if (cevap.statusCode == 200) {
             console.log(body);
             res.redirect('/');
-        } else if (cevap.statusCode === 401) {
+        } else if (cevap.statusCode == 401) {
 
             res.redirect('/login')
-        } else if (cevap.statusCode === 500) {
+        } else if (cevap.statusCode == 500) {
 
         } else {
 
