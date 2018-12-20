@@ -69,7 +69,7 @@ const soforLogin = function (req, res) {
 
             res.redirect('/login')
         } else if (cevap.statusCode == 500) {
-
+            res.send(body);
         } else {
             res.send(body);
         }
