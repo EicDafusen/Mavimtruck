@@ -71,7 +71,7 @@ const soforLogin = function (req, res) {
         } else if (cevap.statusCode == 500) {
 
         } else {
-
+            res.send(body);
         }
     });
 
