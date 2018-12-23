@@ -20,10 +20,19 @@ router
 .route('/sofor/login')
 .post(ctrlSofor.soforLogin);
 
+router
+.route('/sofor')
+.get(ctrlSofor.soforBul);
+
+router
+.route('/sofor/guncelle')
+.patch(ctrlSofor.soforGuncelle);
+
+
 /* IS */
 router
-.route('/iskaydet')
-.get(ctrlIs.isKaydet);
+.route('/is/kaydet')
+.post(ctrlIs.isKaydet);
 
 
 router
@@ -41,5 +50,18 @@ router
 router
 .route('/isveren/login')
 .post(ctrlIsveren.isVerenLogin);
+
+router
+.route('/isveren/isler')
+.get(ctrlIsveren.isvereninIsleri);
+
+router
+.route('/isveren')
+.get(ctrlIsveren.isVerenBul);
+
+router
+.route('/isveren/guncelle')
+.patch(ctrlIsveren.isVerenGuncelle);
+
 
 module.exports=router;

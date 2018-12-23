@@ -14,29 +14,30 @@ const cevapOlustur = function (res,status,content) {
 const isKaydet = function(req,res){
 
 
-    var d = new Date();
     var yeniIs = new Isler({
-
-        is_veren_id: null ,
-        son_basvuru_tarihi: d.getDate(),
-        kasa_tipi: "kasa_tipi",
-        max_agirlik: 3000,
-        is_tarihi:d.getDate(),
-        gerekli_lisanslar: ["lis","sans"],
-        yuk_cinsi:"yuk cinsi",
-        hareket_yeri:"bura",
-        varis_yeri:"ora",
-        is_icin_verilen_sure:"çok",
+ 
+        is_veren_id: req.body.is_veren_id ,
+        ilan_basligi : req.body.ilan_basligi, 
+        son_basvuru_tarihi: req.body.son_basvuru_tarihi,
+        kasa_tipi: req.body.kasa_tipi,
+        max_agirlik: req.body.max_agirlik,
+        is_tarihi:req.body.is_tarihi,
+        gerekli_lisanslar: req.body.gerekli_lisanslar,
+        yuk_cinsi:req.body.yuk_cinsi,
+        hareket_yeri:req.body.hareket_yeri,
+        varis_yeri:req.body.varis_yeri,
+        is_icin_verilen_sure:req.body.is_suresi,
+        
         basvuranlar: null
     });
 
 
     yeniIs.save(yeniIs).then((kaydedilenIs)=>{
-        cevapOlustur(res,200,kaydedilenIs);
+      
+        res.status(201).send(kaydedilenIs)
     },(e)=>{
-        cevapOlustur(res,400,{
-            "mesaj": e
-           });
+        res.status(400).send(e);
+        
     });
 
 

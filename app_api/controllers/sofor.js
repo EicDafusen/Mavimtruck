@@ -15,8 +15,6 @@ const cevapOlustur = function (res, status, content) {
 };
 
 
-
-
 const getAllSoforler = function (req, res) {
 
 
@@ -103,10 +101,10 @@ const soforLogin = function (req, res) {
         eposta: email,
         sifre: sifre
     }).then((sofor) => {
-        console.log(sofor);
+        
         if (sofor[0]) {
-            console.log(sofor);
-            res.status(200).send(sofor);
+            
+            res.status(200).send(sofor[0]);
 
         } else {
             res.status(401).send("is _ sfire yanlis");
@@ -119,19 +117,93 @@ const soforLogin = function (req, res) {
 
 }
 
+const soforBul = function ( req,res){
+
+    var id = req.body.id;
+    var g_sofor = {
+        sofor :{},
+        arac: {}
+    }
+
+    Sofor.findOne({_id:id}).then((sofor)=>{
+        
+        if(sofor){
+            g_sofor.sofor = sofor;
+            
+            Arac.findOne({_id:sofor.arac_id}).then((arac)=>{
+                if(arac){
+                    g_sofor.arac = arac;
+                    res.status(200).send(g_sofor);
+                }else {
+                    res.status(404).send({});
+                }
+            })
+            
+        }else {
+            res.status(404).send({});
+        }
+    },(e)=>{
+        res.status(400).send(e);
+    })
 
 
+}
 
 
+const soforGuncelle = function (req,res){
+
+    var id = req.body.id;
+    var arac = {
+
+        marka: req.body.aracMarka,
+        model: req.body.aracModel,
+        kasa_tipi: req.body.aracKasaTipi,
+        max_agirlik: req.body.aracKapasitesi
 
 
+    }
+
+    var sofor = {
+
+        ad_soyad: req.body.soforAd + " " + req.body.soforSoyad,
+        telefon: req.body.soforTelefon,
+        eposta: req.body.soforMail,
+        sifre: req.body.soforSifre,
+        lisanslar: req.body.lisanslar,
+
+    }
+     
+    Sofor.findOneAndUpdate({_id:id},{$set:sofor},{new:true}).then((sofor)=>{
+      
+        if(sofor){
+         
+             Arac.findOneAndUpdate({_id:sofor.arac_id},{$set:arac},{new:true}).then((arac)=>{
+
+                if(arac){
+                    res.status(200).send({sofor,arac});
+                }else{
+                    res.status(404).send({});    
+                }
+
+             },(e)=>{
+                res.status(400).send(e);
+             })
+        }else{
+            res.status(404).send({});
+        }
 
 
+    },(e)=>{
+        res.status(400).send(e);
+    })
 
 
+}
 
 module.exports = {
     getAllSoforler,
     postYeniSofor,
-    soforLogin
+    soforLogin,
+    soforBul,
+    soforGuncelle
 };

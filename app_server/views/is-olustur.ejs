@@ -14,7 +14,8 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <form method="post" action="/api/iskaydet">
+          <% include partials/baslik.ejs %>
+        <form method="post" action="/is/olustur">
           <h3>İş Bilgileri</h3>
           <div class="form-group">
             <label for="exampleFormControlInput1">İlan Başlığı: </label>
@@ -220,7 +221,7 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">İş İçin Tanınan Süre: </label>
-            <input type="date" class="form-control" id="is_suresi" name="is_suresi" placeholder="İş için tanınan süreyi girin.">
+            <input type="text" class="form-control" id="is_suresi" name="is_suresi" placeholder="İş için tanınan süreyi girin.">
           </div>
           <h3>Gerekli Sertifikalar</h3>
           <div class="form-group">

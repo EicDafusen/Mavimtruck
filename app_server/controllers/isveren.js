@@ -1,6 +1,6 @@
 var request = require('request')
 
-//var api_url = "http://localhost:3000/api"
+// var api_url = "http://localhost:3000/api"
 var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
@@ -60,11 +60,15 @@ const isVerenLogin = function (req, res) {
     }
 
     request(istekSecenekleri, (hata, cevap, body) => {
+        
         console.log(body);
-
         if (cevap.statusCode == 200) {
-
-            res.redirect('/');
+            var user ={
+                ktipi:"isveren",
+                id: body._id
+            }
+            req.session.user =user;
+            res.redirect('/isveren/profil');
         } else if (cevap.statusCode == 401) {
             res.send('sifre yanlis')
         } else {
@@ -80,7 +84,111 @@ const isVerenLogin = function (req, res) {
 
 }
 
+const isleriListele = function (req,res){
+
+    
+    if (!req.session.user || req.session.user.ktipi == "sofor") {
+        res.redirect('/login');
+    }
+
+    var isveren_id = {id:req.session.user.id};
+
+    var istekSecenekleri = {
+        url : api_url + "/isveren/isler",
+        method : "GET",
+        json : isveren_id,
+    }
+
+    request(istekSecenekleri ,(hata, cevap, isler) => {
+        if (cevap.statusCode == 200) {
+            console.log(isler);
+            res.render("isler-liste-sayfa.ejs", {
+                isler
+            });
+        } else if (cevap.statusCode == 404) {
+            res.send(body)
+           
+        } else if (cevap.statusCode === 400) {
+            res.send(body)
+        }
+    });
+ 
+
+}
+
+const isVerenGuncelleSayfasi = function (req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "sofor") {
+        res.redirect('/login');
+    }
+    
+    var id = {
+        id: req.session.user.id
+
+    }
+    istekSecenekleri = {
+        url : api_url + '/isveren',
+        method : "GET",
+        json : id
+    }
+
+    request(istekSecenekleri,(hata,cevap,isveren)=>{
+        if(cevap.statusCode == 200){ 
+            res.render('isveren-guncelle.ejs',{isveren});   
+        }else{
+            res.send(isveren);
+        }
+           
+    });
+ 
+
+
+}
+
+const isVerenGuncelle = function(req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "sofor") {
+        res.redirect('/login');
+    }
+   
+    
+    yeniİsveren = {
+        id:req.session.user.id,
+        sirket_adi: req.body.sirketAdi,
+        sifre: req.body.sirketSifre,
+        telefon: req.body.sirketTelefon,
+        vergi_no: req.body.vergiNo,
+        sicil_no: req.body.sicilNo,
+        e_posta: req.body.sirketMail,
+    }
+
+    istekSecenekleri = {
+        url: api_url + "/isveren/guncelle",
+        method: "PATCH",
+        json: yeniİsveren
+
+    }
+
+    request(istekSecenekleri, (hata, cevap, body) => {
+        if (cevap.statusCode == 200) {
+            console.log(body);
+            res.redirect('/');
+        } else if (cevap.statusCode == 404) {
+            console.log(body);
+            res.redirect('/login')
+        } else if (cevap.statusCode === 400) {
+            console.log(body);
+            res.redirect('/login')
+        }
+    })
+
+
+
+}
 module.exports = {
     isVerenEkle,
-    isVerenLogin
+    isleriListele,
+    isVerenLogin,
+    isVerenGuncelleSayfasi,
+    isVerenGuncelle
 };

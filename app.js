@@ -6,6 +6,7 @@ require('./app_api/models/dbconnection');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var session = require('express-session');
 
 var routesApi = require('./app_api/routes/index'); 
 var index = require('./app_server/routes/index');
@@ -23,6 +24,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({
+  secret:"cokgizlibisi",
+  resave:false,
+  saveUninitialized:true
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', routesApi);

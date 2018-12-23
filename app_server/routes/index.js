@@ -33,12 +33,40 @@ router.get('/kayitol',function (req, res, next) {
 });
 
 
+router.post('/is/olustur',ctrlIsler.isEkle);
+router.get('/is/olustur',function (req, res, next) {
+
+  if(!req.session.user || req.session.user.ktipi == "sofor"){
+    res.redirect('/login');
+  }
+  res.render('is-olustur.ejs', {});
+});
 
 
+router.get('/isveren/isler', ctrlIsveren.isleriListele);
 
-router.get('/isler', ctrlIsler.isleriListele);
+router.get('/isveren/guncelle', ctrlIsveren.isVerenGuncelleSayfasi);
+router.post('/isveren/guncelle', ctrlIsveren.isVerenGuncelle);
+
+router.get('/sofor/guncelle',ctrlSofor.soforGuncelleSayfasi);
+router.post('/sofor/guncelle',ctrlSofor.soforGuncelle);
 
 
+router.get('/isveren/profil',function (req, res, next) {
+
+  if(!req.session.user || req.session.user.ktipi == "sofor"){
+    res.redirect('/login');
+  }
+  res.render('isveren-profil.ejs', {});
+});
+
+router.get('/sofor/profil',function (req, res, next) {
+
+  if(!req.session.user || req.session.user.ktipi == "isveren"){
+    res.redirect('/login');
+  }
+  res.render('sofor-profil.ejs', {});
+})
 
 module.exports = router;
 

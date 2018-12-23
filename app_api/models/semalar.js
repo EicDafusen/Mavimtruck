@@ -30,16 +30,18 @@ var SoforSema = new mongoose.Schema({
 var IslerSema = new mongoose.Schema({
     is_veren_id:{
 		type:  mongoose.Schema.Types.ObjectId,
+		required: true,
 		
 	},
-	son_basvuru_tarihi:{type:Date,required:true},
+	son_basvuru_tarihi:{type:String,required:true},
 	kasa_tipi:{type:String,required:true},
+	ilan_basligi:{type:String,required:true},
 	max_agirlik:{type:Number,required:true},
-	is_tarihi:{type:Date,required:true},
+	is_tarihi:{type:String,required:true},
 	gerekli_lisanslar:{type:[String],required:true},
 	yuk_cinsi:{type:String,required:true},
-	hareket_yeri:{type:String,required:true},
-	varis_yeri:{type:String,required:true},
+	hareket_yeri:{type:Number,required:true},
+	varis_yeri:{type:Number,required:true},
 	is_icin_verilen_sure:{type:String,required:true},
 	basvuranlar:{
 		type:  [mongoose.Schema.Types.ObjectId]
@@ -85,7 +87,7 @@ IsverenSema.methods.tokenOlustur = function (){
 
 	});
 
-	return is_veren.save().then(()=>{
+	is_veren.save().then(()=>{
 		return token;
 	});
 
