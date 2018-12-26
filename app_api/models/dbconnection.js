@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 
 
-// var dbURI = 'mongodb://localhost:27017/mongooseAPI'; local uri
-var dbURI = 'mongodb://admin:abc123@ds161112.mlab.com:61112/mavimtruck'
+//var dbURI = 'mongodb://localhost:27017/mongooseAPI'; 
+ var dbURI = 'mongodb://admin:abc123@ds161112.mlab.com:61112/mavimtruck'
 mongoose.connect(dbURI,{useNewUrlParser: true});
 mongoose.set('useCreateIndex', true);//ne olduğu bilmiyorum warning için yazdim :)))
 

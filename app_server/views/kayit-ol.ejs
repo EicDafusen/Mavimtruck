@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Forms in Node.js</title>
+  <title>Kayıt Ol</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -10,7 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 </head>
 <body class="container">
 
@@ -25,7 +25,7 @@
 
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="sofor" role="tabpanel" aria-labelledby="sofor-tab">
-	<form method="post" action="/api/soforkaydet">
+	<form method="post" action="/sofor/uyeol">
 		<h3>Şoför Bilgileri</h3>
 			<div class="form-group">
 				<label for="exampleFormControlInput1">Ad: </label>
@@ -99,7 +99,7 @@
 	</form>
 	</div>
   <div class="tab-pane fade" id="isveren" role="tabpanel" aria-labelledby="isveren-tab">
-	<form method="POST" action="/api/isverenekle">
+	<form method="POST" action="/isveren/uyeol">
         <!--şirketin adı-->
         <div class="form-group">
 			<label  for="sirketAdi">Şirket Adı: </label>

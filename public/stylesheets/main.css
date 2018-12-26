@@ -85,3 +85,35 @@ a.nav-link-footer {
 	color: #0056b3;
     text-decoration:none;
 }
+
+.profilButton{
+	color: #2980b9;
+	border-color: #2980b9;
+	border-width: 3px;
+	border-radius: 0px;
+	padding: 30px;
+	margin-bottom: 15px;
+}
+
+.profilButton:hover{
+	border-color: #2980b9;
+	background-color: #2980b9;
+}
+
+.cikisYapButton{
+	color: #c0392b;
+	border-color: #c0392b;
+	border-width: 3px;
+	border-radius: 0px;
+	padding: 30px;
+	margin-bottom: 15px;
+}
+
+.cikisYapButton:hover{
+	border-color: #c0392b;
+	background-color: #c0392b;
+}
+
+.hataMesaji {
+	text-align : center; height:100%; margin : 0px auto; margin-top: 10%; vertical-align:middle; max-width: 900px;
+}

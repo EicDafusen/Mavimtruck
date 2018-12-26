@@ -1,6 +1,6 @@
 var request = require('request')
 
- //var api_url = "http://localhost:3000/api"
+//var api_url = "http://localhost:3000/api"
 var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
