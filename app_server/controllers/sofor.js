@@ -55,7 +55,7 @@ const soforLogin = function (req, res) {
         sifre: req.body.sifre
     }
 
-    
+   
 
     var istekSecenekleri = {
         url: api_url +'/sofor/login',
