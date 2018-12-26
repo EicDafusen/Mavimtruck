@@ -68,6 +68,13 @@ router.get('/sofor/profil',function (req, res, next) {
   res.render('sofor-profil.ejs', {});
 })
 
+
+
+router.get('/cikisyap',function (req, res, next) {
+
+  req.session.destroy();
+  res.redirect('/')
+});
 module.exports = router;
 
 
