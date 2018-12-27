@@ -75,6 +75,24 @@ router.get('/cikisyap',function (req, res, next) {
   req.session.destroy();
   res.redirect('/')
 });
+
+
+router.get('/profil',function (req, res, next) {
+
+  if(!req.session.user ){
+    res.redirect('/login');
+  }
+
+  if(req.session.user.ktipi == "sofor"){
+    res.redirect('/sofor/profil');
+  }else if (req.session.ktipi == "isveren"){
+    res.redirect('/isveren/profil');
+  }else{
+    res.redirect('/login');
+  }
+   
+
+});
 module.exports = router;
 
 
