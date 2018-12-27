@@ -21,7 +21,13 @@ router.post('/isveren/login', ctrlIsveren.isVerenLogin);
 router.post('/sofor/login', ctrlSofor.soforLogin);
 
 router.get('/login',function (req, res, next) {
-  res.render('login.ejs', {});
+  if(req.query.hata && req.query.hata == "evet"){
+    res.render('login.ejs', {hata : "evet"});
+  }else {
+    res.render('login.ejs', {});
+  }
+
+  
 })
 
 
@@ -68,7 +74,7 @@ router.get('/sofor/profil',function (req, res, next) {
   res.render('sofor-profil.ejs', {});
 })
 
-
+router.get('/sofor/isbul',ctrlSofor.soforIsBul)
 
 router.get('/cikisyap',function (req, res, next) {
 

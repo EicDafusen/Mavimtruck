@@ -16,6 +16,14 @@
 		<% include partials/baslik.ejs %>
 		<br>
 
+		<% if (typeof hata != 'undefined' && hata == "evet") { %>
+				 
+			<div class="alert alert-danger" role="alert">
+				 Kullanıcı Adı ve Şifrenizi Kontrol Edin ! 
+			</div>		
+			
+			<% } %>
+
 <ul class="nav nav-tabs" id="myTab" role="tablist" >
   <li class="nav-item">
     <a class="nav-link active" id="sofor-tab" data-toggle="tab" href="#sofor" role="tab" aria-controls="sofor" aria-selected="true">Şoför</a>

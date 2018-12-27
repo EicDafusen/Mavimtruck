@@ -1,6 +1,6 @@
 var request = require('request')
 
-// var api_url = "http://localhost:3000/api"
+ var api_//ttp://localhost:3000/api"
 var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
@@ -76,7 +76,7 @@ const soforLogin = function (req, res) {
            
             res.redirect('/sofor/profil');
         } else if (cevap.statusCode == 401 ) {
-            res.send('sifre yanlis')
+            res.redirect('/login?hata=evet');
         } else if (cevap.statusCode == 404){
             res.send(cevap);
         }
@@ -165,10 +165,38 @@ const soforGuncelle = function (req,res){
 
 }
 
+const soforIsBul = function (req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "isveren") {
+        res.redirect('/login');
+    }
+    
+    var istekSecenekleri = {
+        url : api_url + "/tumisler",
+        method : "GET",
+        json : {},
+    }
+
+    request(istekSecenekleri ,(hata, cevap, isler) => {
+        if (cevap.statusCode == 200) {
+            console.log(isler);
+            res.render("butun-isler-liste.ejs", {
+                isler
+            });
+        } else if (cevap.statusCode == 404) {
+            res.send(body)
+           
+        } else if (cevap.statusCode === 400) {
+            res.send(body)
+        }
+    });
+
+}
 
 module.exports = {
     soforKaydet,
     soforLogin,
     soforGuncelleSayfasi,
-    soforGuncelle
+    soforGuncelle,
+    soforIsBul
 }

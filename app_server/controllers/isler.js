@@ -1,8 +1,8 @@
 var request = require('request')
 
  
-// var api_url = "http://localhost:3000/api"
-  var api_url = "https://mavimtruck.herokuapp.com/api";
+//var api_url = "http://localhost:3000/api"
+   var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
 
@@ -38,11 +38,13 @@ const isEkle = function (req,res) {
         res.redirect('/login')
     }else{
         var isveren_id = req.session.user.id;
+        var isveren_ad = req.session.user.ad;
     }
      
     var yeniIs = {
 
         is_veren_id: isveren_id,
+        isveren_ad:isveren_ad,
         ilan_basligi : req.body.ilan_basligi, 
         son_basvuru_tarihi: req.body.son_basvuru_tarihi,
         kasa_tipi: req.body.arac_kasa_tipi,

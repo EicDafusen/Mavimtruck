@@ -1,7 +1,7 @@
 var request = require('request')
 
 //var api_url = "http://localhost:3000/api"
-   var api_url = "https://mavimtruck.herokuapp.com/api";
+var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
 
@@ -61,7 +61,7 @@ const isVerenLogin = function (req, res) {
 
     request(istekSecenekleri, (hata, cevap, body) => {
         
-        console.log(body);
+        
         if (cevap.statusCode == 200) {
             var user ={
                 ktipi:"isveren",
@@ -71,7 +71,8 @@ const isVerenLogin = function (req, res) {
             req.session.user =user;
             res.redirect('/isveren/profil');
         } else if (cevap.statusCode == 401) {
-            res.send('sifre yanlis')
+            
+            res.redirect('/login?hata=evet');
         } else {
             console.log(hata);
         }
