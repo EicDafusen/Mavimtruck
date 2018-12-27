@@ -1,6 +1,6 @@
 var request = require('request')
 
-//var api_url = "http://localhost:3000/api"
+// var api_url = "http://localhost:3000/api"
 var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
@@ -153,7 +153,7 @@ const soforGuncelle = function (req,res){
 
     request(istekSecenekleri, (hata, cevap, body) => {
         if (cevap.statusCode ==200) {
-            res.redirect('/');
+            res.redirect('/sofor/profil');
         } else if (cevap.statusCode == 400) {
             console.log(body);
             res.send(body)

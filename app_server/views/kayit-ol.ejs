@@ -13,7 +13,8 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 </head>
 <body class="container">
-
+		<% include partials/baslik.ejs %>
+		<br>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="sofor-tab" data-toggle="tab" href="#sofor" role="tab" aria-controls="sofor" aria-selected="true">Şoför</a>
@@ -138,7 +139,8 @@
 		
         <button type="submit" class="btn btn-primary">Kayıt Ol</button>
 	</form>
-  </div>
+	</div>
+	<% include partials/footer.ejs %>
 </div>
 </body>
 </html>

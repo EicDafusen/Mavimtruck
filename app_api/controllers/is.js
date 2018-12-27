@@ -21,6 +21,7 @@ const isKaydet = function(req,res){
         son_basvuru_tarihi: req.body.son_basvuru_tarihi,
         kasa_tipi: req.body.kasa_tipi,
         max_agirlik: req.body.max_agirlik,
+        fiyat:req.body.fiyat,
         is_tarihi:req.body.is_tarihi,
         gerekli_lisanslar: req.body.gerekli_lisanslar,
         yuk_cinsi:req.body.yuk_cinsi,

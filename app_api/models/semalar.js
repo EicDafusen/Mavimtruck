@@ -37,11 +37,12 @@ var IslerSema = new mongoose.Schema({
 	kasa_tipi:{type:String,required:true},
 	ilan_basligi:{type:String,required:true},
 	max_agirlik:{type:Number,required:true},
+	fiyat:{type:String,required:true},
 	is_tarihi:{type:String,required:true},
 	gerekli_lisanslar:{type:[String],required:true},
 	yuk_cinsi:{type:String,required:true},
-	hareket_yeri:{type:Number,required:true},
-	varis_yeri:{type:Number,required:true},
+	hareket_yeri:{type:String,required:true},
+	varis_yeri:{type:String,required:true},
 	is_icin_verilen_sure:{type:String,required:true},
 	basvuranlar:{
 		type:  [mongoose.Schema.Types.ObjectId]

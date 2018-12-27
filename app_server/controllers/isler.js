@@ -1,7 +1,8 @@
 var request = require('request')
 
- // var api_url = "http://localhost:3000/api"
- var api_url = "https://mavimtruck.herokuapp.com/api";
+ 
+// var api_url = "http://localhost:3000/api"
+  var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
 
@@ -46,6 +47,7 @@ const isEkle = function (req,res) {
         son_basvuru_tarihi: req.body.son_basvuru_tarihi,
         kasa_tipi: req.body.arac_kasa_tipi,
         max_agirlik: req.body.arac_kapasitesi,
+        fiyat : req.body.is_fiyati,
         is_tarihi:req.body.is_tarihi,
         gerekli_lisanslar: [req.body.src3, req.body.src4, req.body.src5, req.body.k1, req.body.k2],
         yuk_cinsi:req.body.yuk_cinsi,
@@ -68,7 +70,7 @@ const isEkle = function (req,res) {
         console.log(cevap.statusCode);
         if (cevap.statusCode ==201) {
             console.log(cevap);
-            res.redirect('/')
+            res.redirect('/isveren/profil')
         } else if (cevap.statusCode == 400 || cevap.statusCode == 404 || cevap.statusCode == 401 ) {
             console.log(body);
             res.send(body)

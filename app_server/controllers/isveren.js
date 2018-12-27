@@ -1,7 +1,7 @@
 var request = require('request')
 
- //var api_url = "http://localhost:3000/api"
- var api_url = "https://mavimtruck.herokuapp.com/api";
+//var api_url = "http://localhost:3000/api"
+   var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
 
@@ -65,7 +65,8 @@ const isVerenLogin = function (req, res) {
         if (cevap.statusCode == 200) {
             var user ={
                 ktipi:"isveren",
-                id: body._id
+                id: body._id,
+                ad: body.sirket_adi
             }
             req.session.user =user;
             res.redirect('/isveren/profil');
@@ -103,7 +104,8 @@ const isleriListele = function (req,res){
         if (cevap.statusCode == 200) {
             console.log(isler);
             res.render("isler-liste-sayfa.ejs", {
-                isler
+                isler,
+                ad: req.session.user.ad
             });
         } else if (cevap.statusCode == 404) {
             res.send(body)
@@ -172,13 +174,13 @@ const isVerenGuncelle = function(req,res){
     request(istekSecenekleri, (hata, cevap, body) => {
         if (cevap.statusCode == 200) {
             console.log(body);
-            res.redirect('/');
+            res.redirect('/isveren/profil');
         } else if (cevap.statusCode == 404) {
             console.log(body);
-            res.redirect('/login')
+            res.redirect('/hata')
         } else if (cevap.statusCode === 400) {
             console.log(body);
-            res.redirect('/login')
+            res.redirect('/hata')
         }
     })
 

@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>İlanlarım</title>
 	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+	 crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	 crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 </head>
-	<body>
-		<div class="container">
-			 <div class="row">
 
-                <div class="error">
-      
-                    
-
-					<% for(var i=0; i < isler.length; i++) { %>
-						
-						<div class="row list-group " style="background-color: #DCDCDC; padding: 8px;    border-radius: 8px;">
-                           
-							<span>  <h3> <%= isler[i].ilan_basligi %> </h3></span>
-							
-							 <span class="btn  pull-right">
-								 <a class="btn btn-primary pull-right"href=""> </a>
-							 </span>
-							 <p>
-								 <span class="label label-warning"> <%= isler[i].hareket_yeri %></span>
-								 <span class="label label-warning"> <%= isler[i].varis_yeri %></span>
-	
-							 </p>
-							 <span class="label label-success"> <%= isler[i].max_agirlik %></span>
-	 
-						</div>
-						
-					 <% } %>
-
-
-                </div>
-
-			 </div>
+<body>
+	<div class="container">
 
 
 
+		<% for(var i=0; i <  isler.length; i++) { %>
+
+		<div class="card">
+			<div class="card-header">
+					<%= ad %> <a href="#" class="btn btn-primary float-right"><i class="fas fa-file-signature"></i> Başvurular </a>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					<%= isler[i].ilan_basligi %>
+				</h5>
+				<p class="card-text"><span class="badge badge-primary"><i class="fas fa-location-arrow"></i>
+						<%= isler[0].hareket_yeri %> </span> <i class="fas fa-arrow-alt-circle-right text-primary"></i> <span class="badge badge-primary"><i
+						 class="fas fa-location-arrow"></i>
+						<%= isler[0].varis_yeri %></span></p>
+				<p class="card-text"><span class="badge badge-secondary"><i class="fas fa-weight-hanging"></i>
+						<%= isler[i].max_agirlik %></span> <span class="badge badge-success"><i class="fas fa-money-bill"></i>
+						<%= isler[0].fiyat %></span> <span class="badge badge-danger"><i class="fas fa-exclamation"></i>
+						<%= isler[0].yuk_cinsi %></span></p>
+			</div>
 		</div>
+		<br>
+
+		<% } %>
 
 
 
 
-	</body>
+
+	</div>
+
+
+
+
+</body>
+
 </html>

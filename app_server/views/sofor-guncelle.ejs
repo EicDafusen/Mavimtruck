@@ -12,6 +12,9 @@
 </head>
 <body>
 	<div class="container">
+
+			<% include partials/baslik.ejs %>
+			<br>
 		
 		<div class="row">
 			<div class="col">
@@ -86,11 +89,13 @@
     <input type="number" class="form-control" id="aracKapasitesi" name="aracKapasitesi" placeholder="Kilogram cinsinden maksimum kapasite" value =  <%= sofor.arac.max_agirlik %> >
   </div>
 
-	 <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+	 <button type="submit" class="btn btn-primary">Güncelle</button>
 </form>
 			</div>
 
 		</div>
+
+		<% include partials/footer.ejs %>
 	</div>
 
 </body>
