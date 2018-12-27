@@ -85,7 +85,7 @@ router.get('/profil',function (req, res, next) {
 
   if(req.session.user.ktipi == "sofor"){
     res.redirect('/sofor/profil');
-  }else if (req.session.ktipi == "isveren"){
+  }else if (req.session.user.ktipi == "isveren"){
     res.redirect('/isveren/profil');
   }else{
     res.redirect('/login');
