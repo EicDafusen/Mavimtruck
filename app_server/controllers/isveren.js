@@ -33,9 +33,9 @@ const isVerenEkle = function (req, res) {
             res.redirect('/');
         } else if (cevap.statusCode == 404) {
             console.log(cevap);
-            res.redirect('/login')
+            res.redirect(body)
         } else if (cevap.statusCode === 400) {
-            res.redirect('/login')
+            res.redirect(body)
         }
     })
 
