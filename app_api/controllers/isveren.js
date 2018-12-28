@@ -141,6 +141,9 @@ const isVerenBul = function(req,res){
 
 }
 
+
+
+
 module.exports = {
     isVerenEkle,
     isvereninIsleri,

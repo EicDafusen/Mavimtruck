@@ -7,8 +7,7 @@ const cevapOlustur = function (res,status,content) {
     res
       .status(status)
       .json(content);
-  };
-
+};
 
 
 const isKaydet = function(req,res){
