@@ -75,6 +75,7 @@ router.get('/sofor/profil',function (req, res, next) {
 })
 
 router.get('/sofor/isbul',ctrlSofor.soforIsBul)
+router.get('/sofor/basvuru/:isid',ctrlSofor.soforBasvur)
 
 router.get('/cikisyap',function (req, res, next) {
 

@@ -1,7 +1,7 @@
 var request = require('request')
 
- var api_//ttp://localhost:3000/api"
-var api_url = "https://mavimtruck.herokuapp.com/api";
+ var api_url = "http://localhost:3000/api";
+//var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
 
@@ -170,11 +170,15 @@ const soforIsBul = function (req,res){
     if (!req.session.user || req.session.user.ktipi == "isveren") {
         res.redirect('/login');
     }
+    var query = {
+     id : req.session.user.id
+    }
+    
     
     var istekSecenekleri = {
         url : api_url + "/tumisler",
         method : "GET",
-        json : {},
+        json : query,
     }
 
     request(istekSecenekleri ,(hata, cevap, isler) => {
@@ -193,10 +197,45 @@ const soforIsBul = function (req,res){
 
 }
 
+
+const soforBasvur = function (req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "isveren") {
+        res.redirect('/login');
+    }
+
+    var query = {
+        sofor_id : req.session.user.id,
+        is_id    : req.params.isid
+
+    }
+    
+    
+    var istekSecenekleri = {
+        url : api_url + '/is/basvuru',
+        method : "PATCH",
+        json : query,
+    }
+
+    
+    request(istekSecenekleri ,(hata, cevap, isler) => {
+        if (cevap.statusCode == 200) {
+            console.log(isler);
+            res.send("İS KAYDOLDU")
+        } else if (cevap.statusCode == 404) {
+            res.send(isler)
+           
+        } else if (cevap.statusCode === 400) {
+            res.send(isler)
+        }
+    });
+}
+
 module.exports = {
     soforKaydet,
     soforLogin,
     soforGuncelleSayfasi,
     soforGuncelle,
-    soforIsBul
+    soforIsBul,
+    soforBasvur
 }

@@ -30,7 +30,7 @@ const isKaydet = function(req,res){
         varis_yeri:req.body.varis_yeri,
         is_icin_verilen_sure:req.body.is_suresi,
         
-        basvuranlar: null
+        basvuranlar: []
     });
     
 
@@ -47,9 +47,18 @@ const isKaydet = function(req,res){
 
 
 const getTumIsler = function(req,res){
+  
+    var sofor_id = req.body.id;
 
+   
    Isler.find({}).then((isler)=>{
-      
+    
+    if(!isler){
+        res.status(404).send(e);
+    }
+  
+    
+
     cevapOlustur(res,200,isler);
    },(e)=>{
     cevapOlustur(res,400,e);   
@@ -62,13 +71,50 @@ const iseBasvuru = function(req,res){
    var sofor_id = req.body.sofor_id;
    var is_id    = req.body.is_id;
 
+   var basvuru = {
+       sofor_id:sofor_id,
+       durum : 0
+   }
+   
 
+   Isler.findById(is_id).then((is)=>{
 
+        if(!is){
+            res.status(404).send({});
+        }
+        
+       
+        is.basvuranlar.forEach(basvuru => {
+            console.log(basvuru);
+            if (basvuru.sofor_id == sofor_id){
+                res.status(400).send("İSE ZATEN KADOLUNMUS")
+            };
+        });
+       
+       
 
+        Isler.findOneAndUpdate({_id:is_id},{$push: {basvuranlar:basvuru}}).then((is)=>{
+            if(is){
+             
+             res.status(200).send(is)
+            }else{
+                res.status(404).send("İS YOK")
+            }
+        },(e)=>{
+         res.status(400).send(e)
+        })
+
+   },(e)=>{
+    res.status(400).send(e)
+   })
 
 }
 
+
+
+
 module.exports={
     isKaydet,
-    getTumIsler
+    getTumIsler,
+    iseBasvuru 
 };

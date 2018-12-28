@@ -45,13 +45,12 @@ var IslerSema = new mongoose.Schema({
 	hareket_yeri:{type:String,required:true},
 	varis_yeri:{type:String,required:true},
 	is_icin_verilen_sure:{type:String,required:true},
-	basvuranlar:{
-		basvuru :{
-			_id:{type:String},
-			durum:{type:Number},
-		}
+	basvuranlar:[{
 		
-	}
+			sofor_id:{type:String},
+			durum:{type:Number},
+			
+	}]
 
 });
 
@@ -65,17 +64,6 @@ var IsverenSema = new mongoose.Schema({
 	sicil_no:{type:String,required:true,unique:true},
 	e_posta:{type:String,required:true,unique:true},
 	puan:{type:Number},
-	tokens:[{
-        access: {
-			type: String,
-		},
-		token: {
-			type: String,
-			
-		}
-	}]
-
-
 
 });
 

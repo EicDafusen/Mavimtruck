@@ -39,7 +39,9 @@ router
 .route('/tumisler')
 .get(ctrlIs.getTumIsler);
 
-
+router
+.route('/is/basvuru')
+.patch(ctrlIs.iseBasvuru);
 
 /* ISVEREN */
 
