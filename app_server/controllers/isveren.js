@@ -1,4 +1,5 @@
 var request = require('request')
+var fonksiyonlar = require('./fonskiyonlar');
 
  //var api_url = "http://localhost:3000/api"
  var api_url = "https://mavimtruck.herokuapp.com/api";
@@ -232,7 +233,7 @@ const basvuruReddet = function(req,res){
     var isveren_id = {id:req.session.user.id};
 
     var istekSecenekleri = {
-        url : api_url + '/isveren/reddet',
+        url : api_url + '/isveren/basvuruyutamamla',
         method : "DELETE",
         json : {soforid: req.params.soforid,
                 isid: req.params.isid}
@@ -241,7 +242,39 @@ const basvuruReddet = function(req,res){
     
     request(istekSecenekleri ,(hata, cevap, body) => {
         if (cevap.statusCode == 200) {
-            
+            var text = body.baslik +" Başlıklı İşe Yaptığınız Başvuru Reddişmiştir ";
+            fonksiyonlar.sendMail(body.email,text);
+            res.redirect('/isveren/profil')
+        } else if (cevap.statusCode == 404) {
+            res.send(body) 
+        } else if (cevap.statusCode === 400) {
+            res.send(body)
+        }
+    });
+
+}
+
+
+const basvuruyuKabulEt = function(req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "sofor") {
+        res.redirect('/login');
+    }
+
+    var isveren_id = {id:req.session.user.id};
+
+    var istekSecenekleri = {
+        url : api_url + '/isveren/basvuruyutamamla',
+        method : "DELETE",
+        json : {soforid: req.params.soforid,
+                isid: req.params.isid}
+    }
+       
+    
+    request(istekSecenekleri ,(hata, cevap, body) => {
+        if (cevap.statusCode == 200) {
+            var text = body.baslik +" Başlıklı İşe Yaptığınız Başvuru Kabul Edilmiştir. Şirket Yakın Zamanda Sizinle İletişime Geçicektir. ";
+            fonksiyonlar.sendMail(body.email,text);
             res.redirect('/isveren/profil')
         } else if (cevap.statusCode == 404) {
             res.send(body) 
@@ -254,7 +287,6 @@ const basvuruReddet = function(req,res){
 
 
 
-
 module.exports = {
     isVerenEkle,
     isleriListele,
@@ -262,5 +294,6 @@ module.exports = {
     isVerenGuncelleSayfasi,
     isVerenGuncelle,
     isVerenBasvurular,
-    basvuruReddet
+    basvuruReddet,
+    basvuruyuKabulEt
 };

@@ -21,7 +21,7 @@
     <h5 class="card-title"><%= soforler[i].ad_soyad %></h5>
     <p class="card-text"><span class="badge badge-primary"><i class="fas fa-envelope"></i> <%= soforler[i].eposta %></span></p>
 	<p class="card-text"><span class="badge badge-secondary"><i class="fas fa-phone"></i><%= soforler[i].telefon %></span> <span class="badge badge-success"><i class="fas fa-certificate"></i> <%= soforler[i].lisanslar %></span>
-	<a href="#" class="btn btn-success float-right" style="margin-left: 15px;"><i class="fas fa-check"></i> Onayla</a> <a href="/isveren/reddet/<%= isid %>/<%= soforler[i]._id %>"+ class="btn btn-danger float-right"><i class="fas fa-times"></i> Reddet</a>
+	<a href="/isveren/kabulet/<%= isid %>/<%= soforler[i]._id %>"+ class="btn btn-success float-right" style="margin-left: 15px;"><i class="fas fa-check"></i> Onayla</a> <a href="/isveren/reddet/<%= isid %>/<%= soforler[i]._id %>"+ class="btn btn-danger float-right"><i class="fas fa-times"></i> Reddet</a>
 	</p>
   </div>
 </div>

@@ -70,8 +70,8 @@ router
 .get(ctrlIsveren.isVerenBasvurular);
 
 router
-.route('/isveren/reddet')
-.delete(ctrlIsveren.isVerenBasvuruReddet);
+.route('/isveren/basvuruyutamamla')
+.delete(ctrlIsveren.isVerenBasvuruyuTamamla);
 
 
 module.exports=router;

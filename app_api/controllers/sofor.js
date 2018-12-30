@@ -200,6 +200,26 @@ const soforGuncelle = function (req,res){
 
 }
 
+
+const getSoforEmail = function ( req,res){
+
+    var id = req.body.id;
+
+    Sofor.findOne({_id:id}).then((sofor)=>{
+        
+        if(sofor){
+            res.status(200).send(sofor.eposta);
+               
+        }else {
+            res.status(404).send({});
+        }
+    },(e)=>{
+        res.status(400).send(e);
+    })
+
+
+}
+
 module.exports = {
     getAllSoforler,
     postYeniSofor,

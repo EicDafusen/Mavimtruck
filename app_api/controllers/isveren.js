@@ -188,7 +188,7 @@ const isVerenBasvurular = function(req,res){
 
 }
 
-const isVerenBasvuruReddet = function(req,res){
+const isVerenBasvuruyuTamamla = function(req,res){
 
     var is_id = req.body.isid;
     var sofor_id = req.body.soforid;
@@ -198,11 +198,11 @@ const isVerenBasvuruReddet = function(req,res){
             res.status(404).send({});
         }
         
-        console.log(is.basvuranlar);
+        
         is.basvuranlar.forEach(function (basvuru, index, object) {
-            console.log(basvuru.sofor_id +"---"+sofor_id);
+           
             if (basvuru.sofor_id == sofor_id) {
-               console.log('YippeeeE!!!!!!!!!!!!!!!!')
+             
                object.splice(index, 1);
 
             }
@@ -212,7 +212,17 @@ const isVerenBasvuruReddet = function(req,res){
             if(!is){
                 res.status(404).send({});
             }
-            res.status(200).send("oldu");
+            Sofor.findById(sofor_id).then((sofor)=>{
+
+                if(!sofor){
+                    res.status(404).send({});
+                }
+                res.status(200).send({baslik:is.ilan_basligi,
+                email : sofor.eposta});    
+            },(e)=>{
+                res.status(404).send(e);
+            })
+            
         },(e)=>{
             res.status(404).send(e);
         })
@@ -235,6 +245,6 @@ module.exports = {
     isVerenBul,
     isVerenGuncelle,
     isVerenBasvurular,
-    isVerenBasvuruReddet
+    isVerenBasvuruyuTamamla
     
 };
