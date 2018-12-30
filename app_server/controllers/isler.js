@@ -1,8 +1,8 @@
 var request = require('request')
 
  
-// var api_url = "http://localhost:3000/api"
-  var api_url = "https://mavimtruck.herokuapp.com/api";
+ // var api_url = "http://localhost:3000/api"
+ var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
 
@@ -86,10 +86,39 @@ const isEkle = function (req,res) {
 
 }
 
+const isSil = function (req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "sofor") {
+        res.redirect('/login');
+    }
+
+
+    istekSecenekleri = {
+        url: api_url + "/is/sil",
+        method: "DELETE",
+        json: {id:req.params.isid}
+
+    }
+
+    request(istekSecenekleri, (hata, cevap, body) => {
+        if (cevap.statusCode == 200) {
+           
+            res.redirect('/isveren/profil');
+        } else if (cevap.statusCode == 404) {
+            
+            res.send(body)
+        } else if (cevap.statusCode === 400) {
+            
+            res.send(body)
+        }
+    })
+
+}
 
 
 module.exports = {
     isleriListele,
-    isEkle
+    isEkle,
+    isSil
 
 }

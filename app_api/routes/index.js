@@ -40,6 +40,10 @@ router
 .get(ctrlIs.getTumIsler);
 
 router
+.route('/is/sil')
+.delete(ctrlIs.isSil);
+
+router
 .route('/is/basvuru')
 .patch(ctrlIs.iseBasvuru);
 

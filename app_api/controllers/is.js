@@ -109,11 +109,30 @@ const iseBasvuru = function(req,res){
 
 }
 
+const isSil = function(req,res){
+
+   var id = req.body.id;
+   
+
+   Isler.findByIdAndDelete(id).then((is)=>{
+       if(!is){      
+        res.status(404).send("really  ?"); 
+           
+       }
+        res.status(200).send({});
+       
+   },(e)=>{
+    res.status(404).send(e);
+   })
+
+}
+
 
 
 
 module.exports={
     isKaydet,
     getTumIsler,
-    iseBasvuru 
+    iseBasvuru,
+    isSil
 };

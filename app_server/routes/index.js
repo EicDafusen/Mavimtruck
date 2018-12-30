@@ -47,6 +47,7 @@ router.get('/is/olustur',function (req, res, next) {
   }
   res.render('is-olustur.ejs', {});
 });
+router.get('/is/sil/:isid',ctrlIsler.isSil)
 
 
 router.get('/isveren/isler', ctrlIsveren.isleriListele);
