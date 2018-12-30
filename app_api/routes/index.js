@@ -65,5 +65,13 @@ router
 .route('/isveren/guncelle')
 .patch(ctrlIsveren.isVerenGuncelle);
 
+router
+.route('/isveren/basvurular')
+.get(ctrlIsveren.isVerenBasvurular);
+
+router
+.route('/isveren/reddet')
+.delete(ctrlIsveren.isVerenBasvuruReddet);
+
 
 module.exports=router;

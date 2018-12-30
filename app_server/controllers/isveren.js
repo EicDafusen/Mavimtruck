@@ -1,7 +1,7 @@
 var request = require('request')
 
- // var api_url = "http://localhost:3000/api"
-var api_url = "https://mavimtruck.herokuapp.com/api";
+ var api_url = "http://localhost:3000/api"
+// var api_url = "https://mavimtruck.herokuapp.com/api";
 
 
 
@@ -188,10 +188,79 @@ const isVerenGuncelle = function(req,res){
 
 
 }
+
+
+const isVerenBasvurular = function(req,res){
+    if (!req.session.user || req.session.user.ktipi == "sofor") {
+        res.redirect('/login');
+    }
+
+    var isveren_id = {id:req.session.user.id};
+
+    var istekSecenekleri = {
+        url : api_url + '/isveren/basvurular',
+        method : "GET",
+        json : {id: req.params.isid}
+    }
+
+    request(istekSecenekleri ,(hata, cevap, soforler) => {
+        if (cevap.statusCode == 200) {
+            
+            res.render("basvurular.ejs", {
+                soforler,
+                isid:req.params.isid
+               
+            });
+        } else if (cevap.statusCode == 404) {
+            res.send(soforler)
+           
+        } else if (cevap.statusCode === 400) {
+            res.send(soforler)
+        }
+    });
+
+    
+}
+
+
+const basvuruReddet = function(req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "sofor") {
+        res.redirect('/login');
+    }
+
+    var isveren_id = {id:req.session.user.id};
+
+    var istekSecenekleri = {
+        url : api_url + '/isveren/reddet',
+        method : "DELETE",
+        json : {soforid: req.params.soforid,
+                isid: req.params.isid}
+    }
+       
+    
+    request(istekSecenekleri ,(hata, cevap, body) => {
+        if (cevap.statusCode == 200) {
+            
+            res.redirect('/isveren/profil')
+        } else if (cevap.statusCode == 404) {
+            res.send(body) 
+        } else if (cevap.statusCode === 400) {
+            res.send(body)
+        }
+    });
+
+}
+
+
+
+
 module.exports = {
     isVerenEkle,
     isleriListele,
     isVerenLogin,
     isVerenGuncelleSayfasi,
-    isVerenGuncelle
+    isVerenGuncelle,
+    isVerenBasvurular,
+    basvuruReddet
 };

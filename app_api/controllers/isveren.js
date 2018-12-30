@@ -10,6 +10,11 @@ const {
 } = require('../models/semalar');
 
 
+const {
+    Sofor
+} = require('../models/semalar');
+
+
 
 const cevapOlustur = function (res, status, content) {
     res
@@ -141,14 +146,95 @@ const isVerenBul = function(req,res){
 
 }
 
+const isVerenBasvurular = function(req,res){
 
 
+    Isler.findById(req.body.id).then((is) => {
+        var soforler= [];   
+         
+        if(!is){
+            cevapOlustur(res, 404,"404040404004");
+        }
+        
+        is.basvuranlar.forEach(basvuru => {
+           
+            
+            Sofor.findById(basvuru.sofor_id).then((sofor)=>{
+                
+                if(!sofor){    
+                    console.log("4444444444")
+                }else{
+                    console.log("9999999")
+                    soforler.push(sofor);   
+                }
+                
+                
+            },(e)=>{
+                cevapOlustur(res, 400, e);
+            })
+
+          
+            
+        }); 
+
+        setTimeout(function(){ res.status(200).send(soforler) }, 3000);
+        
+      
+    }, (e) => {
+        cevapOlustur(res, 400, e);
+    });
+    
+
+
+}
+
+const isVerenBasvuruReddet = function(req,res){
+
+    var is_id = req.body.isid;
+    var sofor_id = req.body.soforid;
+
+    Isler.findById(is_id).then((is)=>{
+        if(!is){
+            res.status(404).send({});
+        }
+        
+        console.log(is.basvuranlar);
+        is.basvuranlar.forEach(function (basvuru, index, object) {
+            console.log(basvuru.sofor_id +"---"+sofor_id);
+            if (basvuru.sofor_id == sofor_id) {
+               console.log('YippeeeE!!!!!!!!!!!!!!!!')
+               object.splice(index, 1);
+
+            }
+        });
+
+        is.save(is).then((is)=>{
+            if(!is){
+                res.status(404).send({});
+            }
+            res.status(200).send("oldu");
+        },(e)=>{
+            res.status(404).send(e);
+        })
+
+        
+    },(e)=>{
+        res.status(404).send(e);
+    })
+
+
+
+
+    
+}
 
 module.exports = {
     isVerenEkle,
     isvereninIsleri,
     isVerenLogin,
     isVerenBul,
-    isVerenGuncelle
+    isVerenGuncelle,
+    isVerenBasvurular,
+    isVerenBasvuruReddet
     
 };

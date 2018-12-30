@@ -50,6 +50,8 @@ router.get('/is/olustur',function (req, res, next) {
 
 
 router.get('/isveren/isler', ctrlIsveren.isleriListele);
+router.get('/isveren/basvurular/:isid', ctrlIsveren.isVerenBasvurular);
+router.get('/isveren/reddet/:isid/:soforid', ctrlIsveren.basvuruReddet);
 
 router.get('/isveren/guncelle', ctrlIsveren.isVerenGuncelleSayfasi);
 router.post('/isveren/guncelle', ctrlIsveren.isVerenGuncelle);
