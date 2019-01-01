@@ -104,6 +104,10 @@ router.get('/profil',function (req, res, next) {
    
 
 });
+
+router.get('/error',function(req,res){
+  res.render('error');
+})
 module.exports = router;
 
 

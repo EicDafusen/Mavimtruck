@@ -86,7 +86,7 @@ const iseBasvuru = function(req,res){
         is.basvuranlar.forEach(basvuru => {
             console.log(basvuru);
             if (basvuru.sofor_id == sofor_id){
-                res.status(400).send("İSE ZATEN KADOLUNMUS")
+                res.status(409).send("İSE ZATEN KADOLUNMUS")
             };
         });
        

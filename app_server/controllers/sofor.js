@@ -170,9 +170,15 @@ const soforIsBul = function (req,res){
     if (!req.session.user || req.session.user.ktipi == "isveren") {
         res.redirect('/login');
     }
+
+  
+
+   
+
     var query = {
      id : req.session.user.id
     }
+    
     
     
     var istekSecenekleri = {
@@ -183,10 +189,15 @@ const soforIsBul = function (req,res){
 
     request(istekSecenekleri ,(hata, cevap, isler) => {
         if (cevap.statusCode == 200) {
-            console.log(isler);
-            res.render("butun-isler-liste.ejs", {
-                isler
-            });
+            
+            if(req.query.alert && req.query.alert == "1"){
+                res.render('butun-isler-liste', {alert : "1",isler});
+            }else if(req.query.alert && req.query.alert == "2"){
+                res.render('butun-isler-liste', {alert : "2",isler});
+            }else{
+                res.render('butun-isler-liste', {isler});  
+            }
+            
         } else if (cevap.statusCode == 404) {
             res.send(body)
            
@@ -220,13 +231,15 @@ const soforBasvur = function (req,res){
     
     request(istekSecenekleri ,(hata, cevap, isler) => {
         if (cevap.statusCode == 200) {
-            console.log(isler);
-            res.send("İS KAYDOLDU")
+            res.redirect('/sofor/isbul?alert=1')
+            
         } else if (cevap.statusCode == 404) {
             res.send(isler)
            
         } else if (cevap.statusCode === 400) {
             res.send(isler)
+        }else if (cevap.statusCode === 409){
+            res.redirect('/sofor/isbul?alert=2')
         }
     });
 }

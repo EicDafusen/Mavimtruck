@@ -61,7 +61,7 @@ app.use(function(err, req, res, next) {
   console.log(err.message);
   console.log(err);
   console.log(res.locals.erorr);
-  res.render('error');
+  res.render('error.ejs');
 });
 
 module.exports = app;

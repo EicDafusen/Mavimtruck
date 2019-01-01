@@ -1,7 +1,7 @@
 var request = require('request')
 var fonksiyonlar = require('./fonskiyonlar');
 
-// var api_url = "http://localhost:3000/api"
+ //var api_url = "http://localhost:3000/api"
  var api_url = "https://mavimtruck.herokuapp.com/api";
 
 

@@ -24,6 +24,22 @@
 			<% include partials/baslik.ejs %>
 			<br>
 
+			<% if (typeof alert != 'undefined' && alert == "1") { %>
+				 
+				<div class="alert alert-success" role="alert">
+					 İşe Başarıyla Başvurdunuz !  
+				</div>		
+				
+				<% } %>
+
+				<% if (typeof alert != 'undefined' && alert == "2") { %>
+				 
+					<div class="alert alert-danger" role="alert">
+						 İşe Zaten Başvurdunuz !!
+					</div>		
+					
+				<% } %>
+
 
 		<% for(var i=0; i <  isler.length; i++) { %>
 
