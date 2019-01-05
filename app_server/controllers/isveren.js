@@ -285,6 +285,36 @@ const basvuruyuKabulEt = function(req,res){
 
 }
 
+const isverenSil = function(req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "sofor") {
+        res.redirect('/login');
+    }
+
+    var query = {
+        id : req.session.user.id,
+    
+    }
+    
+    var istekSecenekleri = {
+        url : api_url + '/isveren/sil',
+        method : "DELETE",
+        json : query,
+    }
+
+
+      request(istekSecenekleri ,(hata, cevap, body) => {
+        if (cevap.statusCode == 200) {
+            res.redirect('/cikisyap')
+            
+        } else if (cevap.statusCode == 404) {
+            res.send(body);
+        } else if (cevap.statusCode === 400) {
+            res.send(body);
+        }
+    });
+}
+
 
 
 module.exports = {
@@ -295,5 +325,6 @@ module.exports = {
     isVerenGuncelle,
     isVerenBasvurular,
     basvuruReddet,
-    basvuruyuKabulEt
+    basvuruyuKabulEt,
+    isverenSil
 };

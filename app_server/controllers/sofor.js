@@ -119,7 +119,6 @@ const soforGuncelleSayfasi = function (req,res){
 
 }
 
-
 const soforGuncelle = function (req,res){
     
     if (!req.session.user || req.session.user.ktipi == "isveren") {
@@ -171,9 +170,6 @@ const soforIsBul = function (req,res){
         res.redirect('/login');
     }
 
-  
-
-   
 
     var query = {
      id : req.session.user.id
@@ -207,7 +203,6 @@ const soforIsBul = function (req,res){
     });
 
 }
-
 
 const soforBasvur = function (req,res){
 
@@ -244,11 +239,82 @@ const soforBasvur = function (req,res){
     });
 }
 
+const soforSil = function(req,res){
+
+    if (!req.session.user || req.session.user.ktipi == "isveren") {
+        res.redirect('/login');
+    }
+
+    var query = {
+        id : req.session.user.id,
+    
+    }
+    
+    var istekSecenekleri = {
+        url : api_url + '/sofor/sil',
+        method : "DELETE",
+        json : query,
+    }
+
+
+      request(istekSecenekleri ,(hata, cevap, body) => {
+        if (cevap.statusCode == 200) {
+            res.redirect('/cikisyap')
+            
+        } else if (cevap.statusCode == 404) {
+            res.send(body);
+        } else if (cevap.statusCode === 400) {
+            res.send(body);
+        }
+    });
+
+
+
+
+}
+
+
+const soforBasvurular = function(req,res){
+
+    
+    if (!req.session.user || req.session.user.ktipi == "isveren") {
+        res.redirect('/login');
+    }
+
+
+    var query = {
+     id : req.session.user.id
+    }
+    
+    
+    
+    var istekSecenekleri = {
+        url : api_url + "/sofor/basvurular",
+        method : "GET",
+        json : query,
+    }
+
+    request(istekSecenekleri ,(hata, cevap, isler) => {
+        if (cevap.statusCode == 200) {
+            
+            res.render('basvurularim-sayfa',{isler})
+            
+        } else if (cevap.statusCode == 404) {
+            res.send(isler)
+           
+        } else if (cevap.statusCode === 400) {
+            res.send(isler)
+        }
+    });
+
+}
 module.exports = {
     soforKaydet,
     soforLogin,
     soforGuncelleSayfasi,
     soforGuncelle,
     soforIsBul,
-    soforBasvur
+    soforBasvur,
+    soforSil,
+    soforBasvurular
 }

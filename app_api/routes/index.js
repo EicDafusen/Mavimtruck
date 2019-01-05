@@ -28,6 +28,14 @@ router
 .route('/sofor/guncelle')
 .patch(ctrlSofor.soforGuncelle);
 
+router
+.route('/sofor/sil')
+.delete(ctrlSofor.soforSil);
+
+router
+.route('/sofor/basvurular')
+.get(ctrlSofor.soforBasvurular);
+
 
 /* IS */
 router
@@ -76,6 +84,10 @@ router
 router
 .route('/isveren/basvuruyutamamla')
 .delete(ctrlIsveren.isVerenBasvuruyuTamamla);
+
+router
+.route('/isveren/sil')
+.delete(ctrlIsveren.isverenSil);
 
 
 module.exports=router;

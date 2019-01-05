@@ -4,6 +4,10 @@ const {
     Sofor
 } = require('../models/semalar');
 const {
+    Isler
+} = require('../models/semalar');
+
+const {
     Arac
 } = require('../models/semalar');
 
@@ -220,10 +224,71 @@ const getSoforEmail = function ( req,res){
 
 }
 
+
+const soforSil = function(req,res){
+
+
+    var id = req.body.id;
+
+
+    Sofor.findByIdAndDelete(id).then((sofor)=>{
+
+        if(sofor){
+            res.status(200).send(sofor);
+        }else{
+            res.status(404).send(sofor);
+        }
+
+    },(e)=>{
+        res.status(400).send(e);
+    })
+
+
+}
+
+
+const soforBasvurular = function(req,res){
+    var sofor_id = req.body.id;
+    var g_isler = [];
+   Isler.find({}).then((isler)=>{
+       if(!isler){
+        res.status(404).send({});
+       }
+
+       isler.forEach(is => {
+            
+            is.basvuranlar.forEach(basvuru => {
+            
+                
+                
+                if (basvuru.sofor_id == sofor_id) {
+                
+                    g_isler.push(is);
+    
+                }
+
+            
+                
+            }); 
+
+      
+        
+        }); 
+
+        res.status(200).send(g_isler);
+
+   },(e)=>{
+
+   })
+
+
+}
 module.exports = {
     getAllSoforler,
     postYeniSofor,
     soforLogin,
     soforBul,
-    soforGuncelle
+    soforGuncelle,
+    soforSil,
+    soforBasvurular
 };

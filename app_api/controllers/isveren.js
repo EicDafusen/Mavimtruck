@@ -238,6 +238,28 @@ const isVerenBasvuruyuTamamla = function(req,res){
     
 }
 
+
+const isverenSil = function(req,res){
+
+
+    var id = req.body.id;
+
+
+    Isveren.findByIdAndDelete(id).then((isveren)=>{
+
+        if(isveren){
+            res.status(200).send(isveren);
+        }else{
+            res.status(404).send(isveren);
+        }
+
+    },(e)=>{
+        res.status(400).send(e);
+    })
+
+
+}
+
 module.exports = {
     isVerenEkle,
     isvereninIsleri,
@@ -245,6 +267,7 @@ module.exports = {
     isVerenBul,
     isVerenGuncelle,
     isVerenBasvurular,
-    isVerenBasvuruyuTamamla
+    isVerenBasvuruyuTamamla,
+    isverenSil
     
 };

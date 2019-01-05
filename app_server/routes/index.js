@@ -34,6 +34,7 @@ router.get('/login',function (req, res, next) {
 router.post('/isveren/uyeol', ctrlIsveren.isVerenEkle);
 router.post('/sofor/uyeol',ctrlSofor.soforKaydet);
 
+router.get('/sofor/basvurular',ctrlSofor.soforBasvurular);
 router.get('/kayitol',function (req, res, next) {
   res.render('kayit-ol.ejs', {});
 });
@@ -69,6 +70,7 @@ router.get('/isveren/profil',function (req, res, next) {
   }
   res.render('isveren-profil.ejs', {});
 });
+router.get('/isveren/sil',ctrlIsveren.isverenSil)
 
 router.get('/sofor/profil',function (req, res, next) {
 
@@ -80,6 +82,9 @@ router.get('/sofor/profil',function (req, res, next) {
 
 router.get('/sofor/isbul',ctrlSofor.soforIsBul)
 router.get('/sofor/basvuru/:isid',ctrlSofor.soforBasvur)
+
+
+router.get('/sofor/sil',ctrlSofor.soforSil)
 
 router.get('/cikisyap',function (req, res, next) {
 
