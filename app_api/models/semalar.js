@@ -90,7 +90,7 @@ var Isveren = mongoose.model('Isveren',IsverenSema)
 
 var Isler = mongoose.model('Isler',IslerSema);
 var Sofor = mongoose.model('Sofor',SoforSema);
-var Arac  = mongoose.model('Arac' ,AracSema);
+var Arac  = mongoose.model('Arac' ,AracSema)
 
 
 module.exports = {Sofor,Arac,Isler,Isveren};
