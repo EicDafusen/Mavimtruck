@@ -20,7 +20,7 @@
     "js-alert": "^1.0.4",
     "jsonwebtoken": "^8.4.0",
     "messagebird": "^2.2.0",
-    "mongoose": "^5.3.15",
+    "mongoose": "^5.7.5",
     "morgan": "~1.9.0",
     "mustache": "^3.0.1",
     "nodemailer": "^5.0.0",
